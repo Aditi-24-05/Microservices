@@ -1,0 +1,12 @@
+{
+  "name": "node-worker",
+  "version": "1.0.0",
+  "description": "Simple background worker",
+  "main": "worker.js",
+  "scripts": {
+    "start": "node worker.js"
+  },
+  "dependencies": {
+    "pg": "^8.8.0"
+  }
+}

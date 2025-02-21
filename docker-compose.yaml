@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  web:
+    build: ./web
+    image: 2022BCD0050/web-service:latest
+    ports:
+      - "8080:8081"  # Exposes container port 8081 on host port 8080
+    environment:
+      - NAME=Aditi Rawat
+      - ROLL_NUMBER=2022BCD0050
+      - BIO=Hello! My name is Aditi Rawat. I am an AI & DS student of Batch 2. This is my first time learning DevOps.
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=myappdb
+      - DB_HOST=db
+    depends_on:
+      - db
+
+  worker:
+    build: ./worker
+    image: 2022BCD0050/worker-service:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=myappdb
+      - DB_HOST=db
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=myappdb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
