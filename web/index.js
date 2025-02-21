@@ -19,7 +19,6 @@ const pool = new Pool({
 });
 
 app.get('/', async (req, res) => {
-  // Optional: Query the database to verify connectivity.
   try {
     const client = await pool.connect();
     const result = await client.query('SELECT NOW()');
