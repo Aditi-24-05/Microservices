@@ -1,7 +1,6 @@
-// Simple worker that periodically queries the database
 const { Pool } = require('pg');
 
-// PostgreSQL connection settings (using the same DB container)
+// PostgreSQL connection settings 
 const pool = new Pool({
   user: process.env.POSTGRES_USER || 'postgres',
   host: process.env.DB_HOST || 'db',
@@ -20,6 +19,4 @@ async function doWork() {
     console.error('Worker error:', err);
   }
 }
-
-// Run every 10 seconds
 setInterval(doWork, 10000);
